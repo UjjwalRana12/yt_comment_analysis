@@ -15,7 +15,7 @@ def main():
         print("Fetching comments for video ID:", video_id)
         comments = fetcher.get_youtube_comments(video_id)
 
-        # Group comments by sentiment score
+        
         sentiment_groups = analyzer.get_comments_by_sentiment(comments)
 
         # Print comments by their sentiment scores (1 to 5)
