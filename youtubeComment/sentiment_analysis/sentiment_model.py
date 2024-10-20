@@ -12,7 +12,7 @@ class SentimentAnalyzer:
        
         tokens = self.tokenizer.encode(comment, return_tensors='pt', truncation=True, padding=True)
         result = self.model(tokens)
-        sentiment_score = int(torch.argmax(result.logits)) + 1  # Sentiment score from 1 to 5
+        sentiment_score = int(torch.argmax(result.logits)) + 1 
         return sentiment_score
     
     def get_sentiment_distribution(self, comments):
