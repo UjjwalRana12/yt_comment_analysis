@@ -1,0 +1,7 @@
+torch
+transformers
+google-api-python-client
+beautifulsoup4
+pandas
+numpy
+requests
