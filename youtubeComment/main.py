@@ -8,7 +8,6 @@ def main():
     fetcher = YouTubeCommentsFetcher(api_key)
     analyzer = SentimentAnalyzer()
 
-    
     youtube_url = input("Enter the YouTube video URL: ")
     video_id = extract_video_id(youtube_url)
 
@@ -16,11 +15,11 @@ def main():
         print("Fetching comments for video ID:", video_id)
         comments = fetcher.get_youtube_comments(video_id)
 
-        
-        sentiment_distribution = analyzer.get_sentiment_distribution(comments)
+        # Group comments by sentiment score
+        sentiment_groups = analyzer.get_comments_by_sentiment(comments)
 
-        
-        analyzer.print_sentiment_distribution(sentiment_distribution)
+        # Print comments by their sentiment scores (1 to 5)
+        analyzer.print_comments_by_sentiment(sentiment_groups)
     else:
         print("Invalid YouTube URL")
 
