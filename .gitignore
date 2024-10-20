@@ -1,4 +1,4 @@
 env
 youtubeComment/__pycache__
-youtubeComment/api_key.py
-youtubeComment/sentiment_analysis/__pycache__
+api_key.py
+__pycache__
