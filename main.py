@@ -5,6 +5,7 @@ from youtube_comments import YouTubeCommentsFetcher
 from sentiment_model import SentimentAnalyzer
 from utils import extract_video_id
 from api_key import api_key
+import os
 
 app = FastAPI()
 
@@ -40,5 +41,5 @@ async def analyze_comments(data: YouTubeURLInput):
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
-    
+    port = int(os.environ.get("PORT", 8000))  
     uvicorn.run(app, host="0.0.0.0", port=8000)
