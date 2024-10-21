@@ -4,8 +4,16 @@ import uvicorn
 from youtube_comments import YouTubeCommentsFetcher
 from sentiment_model import SentimentAnalyzer
 from utils import extract_video_id
-from api_key import api_key
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
+
+api_key = os.getenv("API_KEY")
+
+if not api_key:
+    raise ValueError("No API key found! Please set the API_KEY environment variable.")
+
 
 app = FastAPI()
 
