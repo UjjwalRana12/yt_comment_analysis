@@ -25,6 +25,11 @@ analyzer = SentimentAnalyzer()
 class YouTubeURLInput(BaseModel):
     youtube_url: str
 
+
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to my FastAPI application!"}
+
 @app.post("/analyze-comments")
 async def analyze_comments(data: YouTubeURLInput):
     video_id = extract_video_id(data.youtube_url)
