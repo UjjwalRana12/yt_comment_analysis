@@ -2,17 +2,19 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from collections import defaultdict
 
+from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+
 class SentimentAnalyzer:
     def __init__(self):
-        self.tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
-        self.model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
+        self.tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased-finetuned-sst-2-english')
+        self.model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased-finetuned-sst-2-english')
 
     def analyze_sentiment(self, comment):
-        # Returns the sentiment score of a given comment.
         tokens = self.tokenizer.encode(comment, return_tensors='pt', truncation=True, padding=True)
         result = self.model(tokens)
-        sentiment_score = int(torch.argmax(result.logits)) + 1  # Sentiment is between 1 and 5
+        sentiment_score = int(torch.argmax(result.logits))  # Adjusted for binary sentiment
         return sentiment_score
+
 
     def get_comments_by_sentiment(self, comments):
         # """Groups comments by sentiment score (1 to 5)."""
