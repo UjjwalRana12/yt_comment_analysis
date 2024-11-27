@@ -43,7 +43,7 @@ async def analyze_comments(data: YouTubeURLInput):
         raise HTTPException(status_code=400, detail="Invalid YouTube URL")
 
     try:
-        # Fetch comments
+       
         comments = fetcher.get_youtube_comments(video_id)
         if not comments:
             raise HTTPException(status_code=404, detail="No comments found for this video.")
@@ -59,5 +59,5 @@ async def analyze_comments(data: YouTubeURLInput):
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))  
+    port = int(os.environ.get("PORT", 8009))  
     uvicorn.run(app, host="0.0.0.0", port=port)
