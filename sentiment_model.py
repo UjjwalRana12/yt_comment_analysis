@@ -6,9 +6,9 @@ from transformers import DistilBertTokenizer, DistilBertForSequenceClassificatio
 
 class SentimentAnalyzer:
     def __init__(self):
-        self.tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased-finetuned-sst-2-english')
-        self.model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased-finetuned-sst-2-english')
-
+        self.tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
+        self.model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
+    
     def analyze_sentiment(self, comment):
         tokens = self.tokenizer.encode(comment, return_tensors='pt', truncation=True, padding=True)
         result = self.model(tokens)
